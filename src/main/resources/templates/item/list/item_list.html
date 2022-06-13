@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        th:replace="~{common/layout_4block :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
 <head>
 <title>商品一覧 | シェアードショップ</title>
 <meta charset="UTF-8" />
 </head>
 <body class="admin item_list_admin" th:object="${loginForm}">
 
-		<h2 class="title">商品一覧</h2>
+	<h2 class="title">商品一覧</h2>
+	<table class="list_table item_list" th:if="!${#lists.isEmpty(items)}">
+		<tr>
+			<th>商品画像</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>カテゴリ</th>
+			<th>お気に入り</th>
+		</tr>
 
-		<div th:if="${#lists.isEmpty(items)}">
-			<p th:text="#{itemListAdmin.none}"></p>
-		</div>
-		<table class="list_table item_list"  th:if="!${#lists.isEmpty(items)}">
-			<tr>
-				<th>商品画像</th>
-				<th>商品名</th>
-				<th>価格</th>
-				<th>カテゴリ</th>
-				<th>操作</th>
-			</tr>
-			<!--/* 商品情報 */-->
-			<tr th:each="item: ${items}">
-				<td th:text="${item.id}"></td>
-				<td><a th:href="@{/item/detail/admin/{id}(id=${item.id})}"
-					th:text="${item.name}"></a></td>
-				<td th:text="${item.price}"></td>
-				<td th:text="${item.categoryName}"></td>
-				<td>
-					<form method="post" th:action="@{/item/update/input}">
-						<input type="hidden" name="id" th:value="${item.id}" />
-						<input type="submit" value="変更" />
-					</form>
-					<form method="post" th:action="@{/item/delete/check}">
-						<input type="hidden" name="id" th:value="${item.id}" />
-						<input type="submit" value="削除" class="delete" />
-					</form>
-				</td>
-			</tr>
-		</table>
+		<!--/* 商品情報 */-->
+		<tr th:each="item:${items}">
+			<!--/* 商品画像 */-->
+			<td><span th:if="${item.image != null}"> <img
+					th:src="@{/img/{image}(image=${item.image})}" class="image"></img>
+			</span> <span th:if="${item.image == null}"> <img
+					th:src="@{/img/common/no_image.jpg}" class="image"></img>
+			</span></td>
+			<!--/* 商品名 */-->
+			<td><a th:href="@{/item/detail/{id}(id=${item.id})}"
+				th:text="${item.name}"></a></td>
+			<!--/* 価格 */-->
+			<td th:text="${item.price}"></td>
+			<!--/* カテゴリ */-->
+			<td th:text="${item.categoryName}"></td>
+			<!--/* お気に入り */-->
+			<td>
+				<div>
+				<label class="switch__label">
+        		<input type="checkbox" class="switch__input"/>
+        		<span class="switch__content"></span>
+        		<span class="switch__circle"></span>
+        		</label>	
+				</div>
+		</tr>
+	</table>
 </body>
 </html>
