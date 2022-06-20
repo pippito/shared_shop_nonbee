@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+<head>
+<title>注文一覧 | シェアードショップ</title>
+<meta charset="UTF-8" />
+</head>
+<body class="user love_list">
+	<h2 class="title">お気に入り一覧</h2>
+
+	<div th:if="${#lists.isEmpty(Loves)}">
+		<p th:text="#{loveList.none}"></p>
+	</div>
+	<div class="list" th:if="!${#lists.isEmpty(Loves)}">
+		<table class="list_table item_list">
+			<tr>
+				<th>商品画像</th>
+				<th>商品名</th>
+				<th>価格</th>
+ 				<th>カテゴリ</th>
+				<th>お気に入り</th>
+			</tr>
+			<!--/* 商品情報 */-->
+		<tr th:each="love:${Loves}">
+			<!--/* 商品画像 */-->
+			<td>
+				<span th:if="${love.image != null}"> 
+					<img th:src="@{/img/{image}(image=${love.image})}" class="image"></img>
+				</span>
+				<span th:if="${love.image == null}">
+					<img th:src="@{/img/common/no_image.jpg}" class="image"></img>
+				</span>
+			</td>
+			<!--/* 商品名 */-->
+			<td>
+				<a th:href="@{/item/detail/{id}(id=${love.id})}" th:text="${love.name}"></a>
+			</td>
+			<!--/* 価格 */-->
+			<td th:text="${love.price}"></td>
+			<!--/* カテゴリ */-->
+			<td th:text="${love.category.name}"></td>
+			<!--/* お気に入り */-->
+			<td>
+				<div>
+				<form method = "GET"  th:action="@{/love/list/delete}">
+				    <input type="submit" value="お気に入り解除" />
+				    <input type="hidden" name="itemId" th:value="${love.id}" />
+				    <input type="hidden" name="userId" th:value="${session.user.id}" />	
+				</form>	
+				</div>
+			</td>
+</tr>
+		</table>
+	</div>
+</body>
+</html>

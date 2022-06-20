@@ -52,6 +52,14 @@ public class OrderItem {
 	 */
 	@Column
 	private int price;
+	
+	
+	/**
+	 * コンストラクタ
+	 * */
+	public OrderItem(Item item) {
+		this.item = item;
+	}
 
 	public Integer getId() {
 		return id;
@@ -91,5 +99,9 @@ public class OrderItem {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public OrderItem() {
+		
 	}
 }

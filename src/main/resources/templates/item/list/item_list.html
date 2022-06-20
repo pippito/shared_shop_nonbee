@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+<head>
+<title>商品一覧 | シェアードショップ</title>
+<meta charset="UTF-8" />
+</head>
+<body class="user item_list" th:object="${loginForm}">
+
+	<h2 class="title">商品一覧</h2>
+	
+	<div th:if="${sortNum == null}">
+		<a th:href="@{/item/list/insertDate}" class="font">新着順</a>
+		<a th:href="@{/item/list/hotSellers}" class="font">売れ筋順</a>
+	</div>
+	<div th:if="${sortNum == 0}">
+		<span class="font">新着順</span>
+		<a th:href="@{/item/list/hotSellers}" class="font">売れ筋順</a>
+	</div>
+	<div th:if="${sortNum == 1}">
+		<a th:href="@{/item/list/insertDate}" class="font">新着順</a>
+		<span class="font">売れ筋順</span>
+	</div>
+	
+	<div th:if="${#lists.isEmpty(items)}">
+		<p th:text="#{itemList.none}"></p>
+	</div>
+	
+	<table class="list_table item_list" th:if="!${#lists.isEmpty(items)}">
+		<tr>
+			<th>商品画像</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>カテゴリ</th>
+			<th>お気に入り</th>
+		</tr>
+
+		<!--/* 商品情報 */-->
+		<tr th:each="item:${items}">
+			<!--/* 商品画像 */-->
+			<td><span th:if="${item.image != null}"> <img
+					th:src="@{/img/{image}(image=${item.image})}" class="image"></img>
+			</span> <span th:if="${item.image == null}"> <img
+					th:src="@{/img/common/no_image.jpg}" class="image"></img>
+			</span></td>
+			<!--/* 商品名 */-->
+			<td><a th:href="@{/item/detail/{id}(id=${item.id})}"
+				th:text="${item.name}"></a></td>
+			<!--/* 価格 */-->
+			<td th:text="${item.price}"></td>
+			<!--/* カテゴリ */-->
+			<td th:text="${item.category.name}"></td>
+			<!--/* お気に入り */-->
+			<td th:if="${session.user == null}">
+				<div>
+				<form method = "GET"  th:action="@{/login}">
+				    <input type="submit" value="お気に入り登録" />
+				    <input type="hidden" name="itemId" th:value="${item.id}" />
+				</form>	
+				</div>
+			</td> 
+			<td th:if="${session.user != null}">
+				<div>
+				<form method = "GET"  th:action="@{/item/list/regist}">
+				    <input type="submit" value="お気に入り登録" />
+				    <input type="hidden" name="itemId" th:value="${item.id}" />
+				    <input type="hidden" name="userId" th:value="${session.user.id}" />	
+				</form>	
+				</div>
+			</td> 
+		</tr>
+	</table>
+</body>
+</html>

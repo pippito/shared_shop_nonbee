@@ -2,8 +2,12 @@ package jp.co.sss.shop.controller.login;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jp.co.sss.shop.repository.OrderItemRepository;
 
 /**
  * ログアウト機能のコントローラクラス
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogoutController {
 
+	@Autowired
+	OrderItemRepository orderItemRepository;
+	
 	/**
 	 * ログアウト処理
 	 *
@@ -20,9 +27,10 @@ public class LogoutController {
 	 * @return "/" トップ画面へ
 	 */
 	@RequestMapping(path = "/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, Model model) {
 		// セッション情報を無効にする
 		session.invalidate();
+		
 		return "redirect:/";
 	}
 }

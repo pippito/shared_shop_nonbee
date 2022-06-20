@@ -8,11 +8,13 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
 <title th:replace="${title}">シェアードショップ</title>
 </head>
-<body class="admin">
+<body class="user">
 	<!--/* ヘッダー */-->
 	<header>
 		<div th:replace="~{common/header :: layout-header}"></div>
 	</header>
+	<!--/* メニュー */-->
+	<div th:replace="~{common/menu :: layout-menu}"></div>
 	<div class="container">
 		<!--/* サイドバー */-->
 		<aside>

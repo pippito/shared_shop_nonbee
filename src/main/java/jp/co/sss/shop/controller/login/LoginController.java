@@ -1,5 +1,8 @@
 package jp.co.sss.shop.controller.login;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.shop.bean.UserBean;
+import jp.co.sss.shop.entity.Item;
+import jp.co.sss.shop.entity.OrderItem;
 import jp.co.sss.shop.form.LoginForm;
+import jp.co.sss.shop.repository.OrderItemRepository;
 import jp.co.sss.shop.repository.UserRepository;
 
 /**
@@ -33,7 +39,33 @@ public class LoginController {
 	 */
 	@Autowired
 	HttpSession	session;
+	
+	/**
+	 * 注文商品情報
+	 */
+	@Autowired
+	OrderItemRepository orderItemRepository;
 
+	/**
+	 * トップ画面処理
+	 *
+	 * @return 
+			"index" トップ画面へ
+	 */
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public String index() {
+
+		List<OrderItem> orderItemList = orderItemRepository.findByItemOrderByQuantityDescIdAsc();
+		List<Item> itemList = new ArrayList<>();
+		for (int i = 0; i < orderItemList.size(); i++) {
+			itemList.add(orderItemList.get(i).getItem());
+		}
+		session.setAttribute("items",itemList );
+
+		return "index";
+
+	}
+	
 	/**
 	 * ログイン処理
 	 *
@@ -69,7 +101,13 @@ public class LoginController {
 			Integer authority = ((UserBean) session.getAttribute("user")).getAuthority();
 			if (authority.intValue() == 2) {
 				// 一般会員ログインした場合、トップ画面に遷移
-				return "";
+				List<OrderItem> orderItemList = orderItemRepository.findByItemOrderByQuantityDescIdAsc();
+				List<Item> itemList = new ArrayList<>();
+				for (int i = 0; i < orderItemList.size(); i++) {
+					itemList.add(orderItemList.get(i).getItem());
+				}
+				session.setAttribute("items",itemList );
+				return "redirect:/";
 			}
 			else {
 				// 運用管理者、もしくはシステム管理者としてログインした場合、管理者用メニュー画面に遷移

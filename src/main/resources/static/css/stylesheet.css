@@ -1,4 +1,4 @@
-﻿@CHARSET "UTF-8";
+@CHARSET "UTF-8";
 
 body {
 	color: #12526d;
@@ -299,7 +299,7 @@ p {
 	text-align: center;
 }
 .detail_button_area form:first-of-type{
-	text-align: right;
+	text-align: left;
 }
 .detail_button_area form:last-of-type{
 	text-align: left;
@@ -413,7 +413,7 @@ select {
 	border-bottom: 1px solid #f0f8fb;
 	background-color: #fff;
 	border-collapse: collapse;
-	margin: 50px auto 20px;
+	margin: 40px auto 20px;
 }
 .list_table th,
 .detail_table th {
@@ -517,11 +517,11 @@ select {
 /* ---- 注文最終確認 ---- */
 .list_table.item_detail td:first-of-type{
 	width: 20%;
+	
 }
 .list_table.item_detail img{
 	height: 70px;
-	width: auto;
-	vertical-align:middle;
+	width: 30%;
 }
 .detail_table.address,
 .detail_table.pay {
@@ -529,6 +529,14 @@ select {
 }
 .detail_table.pay {
 	margin-bottom: 50px;
+}
+.check_image_area {
+	width: 30%;	
+	vertical-align:middle;
+}
+.check_image {
+	height: 50px;
+	width: 50px;
 }
 
 /* ---- 買物カゴ ---- */
@@ -545,15 +553,15 @@ select {
 .list_table.basket [type="button"],
 .list_table.basket .delete {
 	margin: 0 3px;
+	background-color: red;
 }
 .list_table.basket .delete{
-	width: 80px;
-	height: 35px;
+	width: 50px;
+	height: 25px;
 	padding: 0px 10px;
 	border-radius: 6px;
 	font-weight: bold;
 }
-
 
 /* ---- 商品一覧(運用管理者向け) ---- */
 
@@ -634,6 +642,158 @@ p.link_center {
 }
 
 /* ---- 買い物かご ---- */
-.err {
+.err_stockNone {
 	color: #FF0000;
+}
+
+/* +++++++++++++++以下改修+++++++++++++++ */
+.heart {
+  width: 100px;
+  height: 85px;
+  left: 50%;
+  top: 50%;
+/*   transform: translate(-50%, -50%); */
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+  border: 0;
+}
+.heart:active {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+  background-position: 0 0;
+  
+}
+/* @keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+} */
+
+.image {
+	width: 200px;
+	height: 200px;
+}
+
+/* === ボタンを表示するエリア ============================== */
+.sample3Area {
+  margin         : auto;                /* 中央寄せ           */
+  width          : 60px;                /* ボタンの横幅       */
+}
+ 
+ /* === チェックボックス ==================================== */
+.sample3Area input[type="checkbox"] {
+  display        : none;            /* チェックボックス非表示 */
+}
+ 
+ /* === チェックボックスのラベル（標準） ==================== */
+.sample3Area label {
+  display        : block;               /* ボックス要素に変更 */
+  box-sizing     : border-box;          /* 枠線を含んだサイズ */
+  text-align     : center;              /* 文字位置は中央     */
+  border         : 2px solid #ccc;      /* 枠線(一旦四方向)   */
+  border-radius  : 3px;                 /* 角丸               */
+  height         : 60px;                /* ボタンの高さ       */
+  font-size      : 18px;                /* 文字サイズ         */
+  line-height    : 60px;                /* 太字               */
+  font-weight    : bold;                /* 太字               */
+  background     : #eee;                /* 背景色             */
+  box-shadow     : 3px 3px 6px #888;    /* 影付け             */
+  transition     : .3s;                 /* ゆっくり変化       */
+}
+ 
+ /* === ON側のチェックボックスのラベル（ONのとき） ========== */
+.sample3Area label span:after{
+  content        : "OFF";               /* 表示する文字       */
+  color          : #aaa;
+}
+.sample3Area #sample3check:checked + label {
+  background     : #78bd78;             /* 背景色             */
+  box-shadow     : none;                /* 影を消す           */
+}
+.sample3Area #sample3check:checked + label span:after {
+  content        : "ON";                /* 表示する文字       */
+  color          : #fff;                /* 文字色             */
+}
+
+.switch__label {
+    width: 50px;
+    position: relative;
+    display: inline-block;
+}
+.switch__content {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    border-radius: 30px;
+    height: 31px;
+    overflow: hidden;
+}
+.switch__content:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    top: 0;
+    left: 0;
+    border: 1.5px solid #E5E5EA;
+    border-radius: 30px;
+    background-color: #fff;
+}
+.switch__content:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    border-radius: 30px;
+    -webkit-transition: all .5s;
+       -moz-transition: all .5s;
+        -ms-transition: all .5s;
+         -o-transition: all .5s;
+            transition: all .5s;
+}
+.switch__input {
+    display: none;
+}
+.switch__circle {
+    display: block;
+    top: 2px;
+    left: 2px;
+    position: absolute;
+    -webkit-box-shadow: 0 2px 6px #999;
+            box-shadow: 0 2px 6px #999;
+    width: 27px;
+    height: 27px;
+    -webkit-border-radius: 20px;
+            border-radius: 20px;
+    background-color: #fff;
+    -webkit-transition: all .5s;
+       -moz-transition: all .5s;
+        -ms-transition: all .5s;
+         -o-transition: all .5s;
+            transition: all .5s;
+}
+.switch__input:checked ~ .switch__circle {
+    left: 21px;
+}
+.switch__input:checked ~ .switch__content:after {
+    background-color: rgb(0, 196, 204);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.font{
+	font-size: 18px;
+	position: relative;
+	top: 40px;
 }
