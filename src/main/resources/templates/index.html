@@ -7,8 +7,24 @@
 </head>
 <body class="user index">
 	<h2 class="title">売れ筋商品</h2>
-	<div class="item">
-		<div class="item_name"></div>
+	<div th:if="${#lists.isEmpty(session.items)}">
+		<p th:text="#{itemList.none}"></p>
+	</div>
+	<div class="item" th:each="item: ${session.items}" th:unless="${#lists.isEmpty(session.items)}">
+		<div class="item_name">
+			<a th:text="${item.name}"></a>
+		</div>
+		
+		<span th:if="${item.image != null}">
+			<a th:href="@{/item/detail/{id}(id=${item.id})}">
+				<img th:src="@{/img/{image}(image=${item.image})}" class="image"></img>
+			</a>
+		</span>
+		<span th:if="${item.image == null}"> 
+			<a th:href="@{/item/detail/{id}(id=${item.id})}">
+				<img th:src="@{/img/common/no_image.jpg}" class="image"></img>
+			</a>
+		</span>	
 	</div>
 
 </body>

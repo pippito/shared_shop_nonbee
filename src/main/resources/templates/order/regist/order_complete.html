@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+<head>
+<title>注文登録完了画面 | シェアードショップ</title>
+<meta charset="UTF-8" />
+</head>
+<body class="order_complete">
+		<h2 class="title">注文完了</h2>
+		
+		<p>ご注文ありがとうございます。<br>注文手続きが完了しました。</p>
+		
+		<form th:action="@{/}" class="detail_button_area">
+		    <input type="submit" value="トップに戻る" /></form>
+</body>
+</html>

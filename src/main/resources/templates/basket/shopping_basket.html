@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+<head>
+<title>買い物かご | シェアードショップ</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<h2 class="title">買い物かご</h2>
+ 	
+
+		<!-- エラー：買い物かごに商品がない場合 -->
+		<p class="err_none" th:if="${#lists.isEmpty(session.baskets)}">
+			現在、お客様の買い物かごには商品がありません。商品をお選びください。</p>	
+	
+	<div class="shopping_basket" th:unless="${#lists.isEmpty(session.baskets)}">
+
+		<!-- エラー：在庫数を越えて商品を追加しようとした場合 -->
+		<div th:if="${basket != null}">
+		<p class="err_stockNone" th:if="${basket.stock == basket.orderNum}" 
+			><span th:text="${basket.name}"></span>は、在庫不足のため、数を増やすことができません。</p>
+	</div>
+		<table class="list_table">
+			<tr>
+				<th>商品名</th>
+				<th>数</th>
+				<th>操作</th>
+				<th>在庫</th></tr>
+			<tr th:each="bk: ${session.baskets}">
+				<td><a th:href="@{/item/detail/{id}(id=${bk.id})}"
+					th:text="${bk.name}"></a></td>
+				<td th:text="${bk.orderNum}"></td>
+				<td><form th:action="@{/basket/delete}" method="post">
+						<input type="hidden" name="id" th:value="${bk.id}"/>
+						<input type="submit" value="削除" class="delete" /></form></td>
+				<!-- 在庫数 1以上5以下：在庫数/6以上：在庫あり -->
+				<td><th:block th:text="${6 lt bk.stock} ? 在庫あり : ${bk.stock}"></th:block></td></tr>
+		</table>
+		
+		<div class="detail_button_area">
+			<form th:action="@{/address/input}" method="post">
+				<input type="hidden" name="backFlg" value="false">
+				<input type="submit" value="ご注文のお手続き" /></form>
+			<form th:action="@{/basket/allDelete}" method="post">
+				<input class="delete" type="submit" value="買い物かごを空にする" /></form>
+		</div>
+	</div>
+</body>
+</html>
