@@ -5,6 +5,7 @@
 <title>商品一覧 | シェアードショップ</title>
 <meta charset="UTF-8" />
 </head>
+<<<<<<< HEAD
 <body class="user item_list" th:object="${loginForm}">
 
 	<h2 class="title">商品一覧</h2>
@@ -26,6 +27,11 @@
 		<p th:text="#{itemList.none}"></p>
 	</div>
 	
+=======
+<body class="admin item_list_admin" th:object="${loginForm}">
+
+	<h2 class="title">商品一覧</h2>
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 	<table class="list_table item_list" th:if="!${#lists.isEmpty(items)}">
 		<tr>
 			<th>商品画像</th>
@@ -49,6 +55,7 @@
 			<!--/* 価格 */-->
 			<td th:text="${item.price}"></td>
 			<!--/* カテゴリ */-->
+<<<<<<< HEAD
 			<td th:text="${item.category.name}"></td>
 			<!--/* お気に入り */-->
 			<td th:if="${session.user == null}">
@@ -68,6 +75,18 @@
 				</form>	
 				</div>
 			</td> 
+=======
+			<td th:text="${item.categoryName}"></td>
+			<!--/* お気に入り */-->
+			<td>
+				<div>
+				<label class="switch__label">
+        		<input type="checkbox" class="switch__input"/>
+        		<span class="switch__content"></span>
+        		<span class="switch__circle"></span>
+        		</label>	
+				</div>
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 		</tr>
 	</table>
 </body>

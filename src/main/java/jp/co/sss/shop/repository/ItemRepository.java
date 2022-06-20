@@ -21,6 +21,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	public List<Item> findByDeleteFlagOrderByInsertDateDescIdAsc(int deleteFlag);
 	public List<Item> findByCategory(Category category);
 	public List<Item>findAllByOrderByInsertDateAsc();
+<<<<<<< HEAD
 	
 	// 新着順並び替え
 	public List<Item> findAllByOrderByInsertDateDescIdDesc();
@@ -28,4 +29,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	//新着一覧
 	public List<Item> findByOrderByInsertDateDescIdDesc();
 
+=======
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 }

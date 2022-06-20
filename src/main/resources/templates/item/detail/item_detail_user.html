@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+<<<<<<< HEAD
         th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+=======
+        th:replace="~{common/layout_3block :: layout(~{::title},~{::body/content()})}">
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 <head>
 <title>商品詳細 | シェアードショップ</title>
 <meta charset="UTF-8" />
@@ -36,6 +40,7 @@
 				    <input type="submit" value="戻る"  class="back_button" />
 				</form>
 				
+<<<<<<< HEAD
 				<form method = "GET"  th:action="@{/login}" th:if="${session.user == null}">
 				    <input type="submit" value="お気に入り登録" />
 				    <input type="hidden" name="itemId" th:value="${item.id}" />
@@ -47,6 +52,16 @@
 				    <input type="hidden" name="userId" th:value="${session.user.id}" />	
 				</form>	
 
+=======
+				<form method = "POST"  th:action="@{/love/result}">
+					<input type="checkbox" name="inputSingleCheck" value="checked" th:field="*{inputSingleCheck}" />  
+	      			<span></span>
+					<div>
+      					<input type="submit" value="送信">
+    				</div>
+				</form>	
+								
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 				<form method="post" th:action="@{/basket/add}">
 					<input type="hidden" name="id" th:value="${item.id}" />
 					<input type="submit" value="買い物かご"  />

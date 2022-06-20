@@ -101,6 +101,7 @@ public class LoginController {
 			Integer authority = ((UserBean) session.getAttribute("user")).getAuthority();
 			if (authority.intValue() == 2) {
 				// 一般会員ログインした場合、トップ画面に遷移
+<<<<<<< HEAD
 				List<OrderItem> orderItemList = orderItemRepository.findByItemOrderByQuantityDescIdAsc();
 				List<Item> itemList = new ArrayList<>();
 				for (int i = 0; i < orderItemList.size(); i++) {
@@ -108,6 +109,9 @@ public class LoginController {
 				}
 				session.setAttribute("items",itemList );
 				return "redirect:/";
+=======
+				return "redirect:/item/list/item_list";
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
 			}
 			else {
 				// 運用管理者、もしくはシステム管理者としてログインした場合、管理者用メニュー画面に遷移
