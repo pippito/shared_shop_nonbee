@@ -2,6 +2,8 @@ package jp.co.sss.shop.controller.category;
 
 import java.util.List;
 
+//		http://localhost:55000/shared_shop_nonbee/
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 

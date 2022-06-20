@@ -4,7 +4,14 @@ import java.sql.Date;
 
 import javax.validation.constraints.Pattern;
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 /**
  * お気に入り情報のフォーム
  *
@@ -13,14 +20,28 @@ import javax.validation.constraints.Pattern;
  */
 public class LoveForm {
 	
+<<<<<<< HEAD
 	ItemForm item;
 	
 	@Pattern(regexp="1")
+=======
+<<<<<<< HEAD
+	ItemForm item;
+	
+	@Pattern(regexp="1")
+=======
+	@Pattern(regexp="checked")
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	private String inputSingleCheck;
 
 	public String getInputSingleCheck() {
 	     return inputSingleCheck;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	
 	public void setInputSingleCheck(String inputSingleCheck) {
 	     this.inputSingleCheck = inputSingleCheck;
@@ -35,6 +56,14 @@ public class LoveForm {
 	 public void setSelectLoves(String[] selectLoves) {
 	   this.selectLoves = selectLoves;
 	 }
+<<<<<<< HEAD
+=======
+=======
+	public void setInputSingleCheck(String inputSingleCheck) {
+	     this.inputSingleCheck = inputSingleCheck;
+	}
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 
 	/**
 	 * ユーザーID

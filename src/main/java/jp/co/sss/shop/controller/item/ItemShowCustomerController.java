@@ -1,11 +1,22 @@
 package jp.co.sss.shop.controller.item;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+<<<<<<< HEAD
+=======
+=======
+import java.util.List;
+
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +30,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.sss.shop.bean.ItemBean;
 import jp.co.sss.shop.entity.Category;
 import jp.co.sss.shop.entity.Item;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 import jp.co.sss.shop.entity.Love2;
 import jp.co.sss.shop.entity.LoveKey2;
 import jp.co.sss.shop.entity.OrderItem;
@@ -26,6 +41,14 @@ import jp.co.sss.shop.repository.ItemRepository;
 import jp.co.sss.shop.repository.LoveRepository;
 import jp.co.sss.shop.repository.LoveRepository2;
 import jp.co.sss.shop.repository.OrderItemRepository;
+<<<<<<< HEAD
+=======
+=======
+import jp.co.sss.shop.form.LoveForm;
+import jp.co.sss.shop.repository.ItemRepository;
+import jp.co.sss.shop.util.BeanCopy;
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 
 /**
  * 商品管理 一覧表示機能(一般会員用)のコントローラクラス
@@ -82,12 +105,24 @@ public class ItemShowCustomerController {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * 商品一覧画面  ナビゲーションバー 新着一覧
+=======
+<<<<<<< HEAD
+	 * 商品一覧画面  ナビゲーションバー 新着一覧
+=======
+	 * 商品一覧画面  ナビゲーションバー 新着順
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	 *
 	 * @param model    Viewとの値受渡し
 	 * @return "item/list/item_list" 商品一覧画面へ
 	 */
 	@RequestMapping("/item/list/1")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	public String  newArrivalList(Model model) {
 	
 	model.addAttribute("items", itemRepository.findByOrderByInsertDateDescIdDesc());
@@ -116,6 +151,40 @@ public class ItemShowCustomerController {
 		
 		return "item/list/item_list";
 
+<<<<<<< HEAD
+=======
+=======
+	public String sintyaku(Model model) {
+	
+	model.addAttribute("items", itemRepository.findAllByOrderByInsertDateAsc());
+	
+	return "item/list/item_list";
+	
+	}
+	
+//	++++++++++++++++++++以下改修++++++++++++++++++++	確認後に削除してください。
+	
+	/**
+	 * 商品一覧画面
+	 * テンプレートパス（/item/list）
+	 * ファイル名（item_list.html）
+	 * @author Naoto Shibata
+	 */
+	
+	@GetMapping("item/list/item_list")
+	public String showItemCustomer(Model model) {
+		// 商品情報を全件検索(新着順)
+		List<Item> itemList = itemRepository.findAll();
+
+		// エンティティ内の検索結果をJavaBeansにコピー
+		List<ItemBean> itemBeanList = BeanCopy.copyEntityToItemBean(itemList);
+
+		// 商品情報をViewへ渡す
+		model.addAttribute("items", itemBeanList);
+		model.addAttribute("url", "/item/item_list/");
+		return "item/list/item_list";
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	}
 	
 	/**
@@ -164,6 +233,10 @@ public class ItemShowCustomerController {
 		// 商品情報を全件検索(新着順)
 		List<Item> itemList = itemRepository.findByCategory(category);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 		// 商品情報をViewへ渡す
 		model.addAttribute("items", itemList);
 		model.addAttribute("url", "/item/list/item_list/");
@@ -266,6 +339,25 @@ public class ItemShowCustomerController {
 		}
 		
 		return "item/list/item_list";
+<<<<<<< HEAD
+=======
+=======
+		// エンティティ内の検索結果をJavaBeansにコピー
+		List<ItemBean> itemBeanList = BeanCopy.copyEntityToItemBean(itemList);
+
+		// 商品情報をViewへ渡す
+		model.addAttribute("items", itemBeanList);
+		model.addAttribute("url", "/item/list/item_list/");
+
+		return "item/list/item_list";	
+	}
+	
+	@RequestMapping(path = "love/result",method = {RequestMethod.POST})
+	public String showResult(Model model, LoveForm form ) {
+		System.out.println("form.getInputSingleCheck()");
+		return "love/result";
+>>>>>>> 7a001baae3d13bebedc7bf3e9b73228e724c0923
+>>>>>>> 0ba33a51e603ec4a9f076ca025239847fd1537af
 	}
 	
 }
